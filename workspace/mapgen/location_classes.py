@@ -1,3 +1,4 @@
+#location_classes.py
 from ..game import Location
 
 class Container(Location):
@@ -24,6 +25,14 @@ class Container(Location):
             return False
 
 class Forest(Location):
+    def __init__(self, name, description):
+        super().__init__(name, description)
+
+class Swamp(Location):
+    def __init__(self, name, description):
+        super().__init__(name, description)
+
+class Ruin(Location):
     def __init__(self, name, description):
         super().__init__(name, description)
 
