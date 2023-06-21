@@ -1,0 +1,25 @@
+Specification for Masters of the Universe Text-Based Adventure Game:
+
+The program should be a text-based adventure game where the player takes on the role of a brave adventurer seeking the Masters of the Universe to help defeat the evil Skeletor and his forces. The game should have a similar flavor to the filmation version of He-Man and the Masters of the Universe. The game should be three times as large as the average text-based adventure game and be unparalleled in detail. The player should be able to move between twenty different areas within the game. The game should have a main quest and ten sub-quests.
+
+Core Classes:
+- Player: Represents the player and their attributes such as health, inventory, and location.
+- Area: Represents an area within the game and its attributes such as name, description, and items.
+- Item: Represents an item within the game and its attributes such as name, description, and effects.
+- Quest: Represents a quest within the game and its attributes such as name, description, and objectives.
+
+Core Functions/Methods:
+- move_player(direction: str) -> bool: Moves the player in the specified direction if possible and returns a boolean indicating if the move was successful.
+- get_area_description(area: Area) -> str: Returns the description of the specified area.
+- get_item_description(item: Item) -> str: Returns the description of the specified item.
+- use_item(item: Item) -> bool: Uses the specified item and returns a boolean indicating if the item was successfully used.
+- start_quest(quest: Quest) -> bool: Starts the specified quest and returns a boolean indicating if the quest was successfully started.
+- complete_quest(quest: Quest) -> bool: Completes the specified quest and returns a boolean indicating if the quest was successfully completed.
+
+Non-Standard Dependencies:
+- None
+
+Storyline:
+The player takes on the role of a brave adventurer seeking the Masters of the Universe to help defeat the evil Skeletor and his forces. The player starts in the village of Eternia and must travel to different areas to find the Masters and complete quests to gain their trust and assistance in defeating Skeletor. The main quest is to retrieve the Sword of Power and use it to defeat Skeletor. The ten sub-quests involve tasks such as finding lost artifacts, rescuing prisoners, and defeating Skeletor's minions.
+
+To run the game, the user should run the main.py file. The game will be controlled via keyboard input. The user will be presented with a description of their current area and a list of available actions. The user can then input a command to perform an action such as moving to a different area, using an item, or starting/completing a quest. The game will continue until the player completes the main quest or dies.
