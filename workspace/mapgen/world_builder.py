@@ -1,3 +1,4 @@
+#world_builder.py
 import os
 import random
 from map_generator import Map, generate_locations
@@ -37,118 +38,201 @@ class World:
                 country = Country(country_name, country_desc)
                 continent.add_location(country)
 
-                num_regions_per_country = random.randint(2, 5)  # Generate a random number of regions per country
-                for _ in range(num_regions_per_country):
+                num_regions_per_continent = random.randint(2, 5)  # Generate a random number of regions per continent
+                for _ in range(num_regions_per_continent):
                     region_name = name_gen.generate_region_name()
                     region_desc = desc_gen.generate_region_description()
                     region = Region(region_name, region_desc)
-                    country.add_location(region)
+                    continent.add_location(region)
 
-                    num_states_per_region = random.randint(4, 8)  # Generate a random number of states per region
-                    for _ in range(num_states_per_region):
-                        state_name = name_gen.generate_state_name()
-                        state_desc = desc_gen.generate_state_description()
-                        state = State(state_name, state_desc)
-                        region.add_location(state)
+                    num_provinces_per_country = random.randint(1, 3)  # Generate a random number of provinces per country
+                    for _ in range(num_provinces_per_country):
+                        province_name = name_gen.generate_province_name()
+                        province_desc = desc_gen.generate_province_description()
+                        province = Province(province_name, province_desc)
+                        country.add_location(province)
 
-                        num_rivers_per_state = random.randint(1, 2)  # Generate a random number of rivers per state
-                        for _ in range(num_rivers_per_state):
+                        num_rivers_per_province = random.randint(1, 2)  # Generate a random number of rivers per province
+                        for _ in range(num_rivers_per_province):
                             river_name = name_gen.generate_river_name()
                             river_desc = desc_gen.generate_river_description()
                             river = River(river_name, river_desc)
-                            state.add_location(river)
+                            province.add_location(river)
 
-                        num_cities_per_state = random.randint(3, 10)  # Generate a random number of cities per state
-                        num_towns_per_state = random.randint(3, 7)  # Generate a random number of towns per state
-                        num_villages_per_state = random.randint(3, 7)  # Generate a random number of villages per state
-
-                        for _ in range(num_cities_per_state):
+                        num_cities_per_province = random.randint(1, 3)  # Generate a random number of cities per province
+                        for _ in range(num_cities_per_province):
                             city_name = name_gen.generate_city_name()
                             city_desc = desc_gen.generate_city_description()
                             city = City(city_name, city_desc)
-                            state.add_location(city)
+                            province.add_location(city)
 
-                        for _ in range(num_towns_per_state):
-                            town_name = name_gen.generate_town_name()
-                            town_desc = desc_gen.generate_town_description()
-                            town = Town(town_name, town_desc)
-                            state.add_location(town)
+                            num_buildings_per_city = random.randint(10, 20)  # Generate a random number of buildings per city
+                            for _ in range(num_buildings_per_city):
+                                building_name = name_gen.generate_building_name()
+                                building_desc = desc_gen.generate_building_description()
+                                building = Building(building_name, building_desc)
+                                city.add_location(building)
 
-                        for _ in range(num_villages_per_state):
+                        num_villages_per_province = random.randint(3, 5)  # Generate a random number of villages per province
+                        for _ in range(num_villages_per_province):
                             village_name = name_gen.generate_village_name()
                             village_desc = desc_gen.generate_village_description()
                             village = Village(village_name, village_desc)
-                            state.add_location(village)
+                            province.add_location(village)
 
-                        num_forests_per_state = random.randint(1, 3)  # Generate a random number of forests per state
-                        for _ in range(num_forests_per_state):
+                            num_buildings_per_village = random.randint(5, 9)  # Generate a random number of buildings per village
+                            for _ in range(num_buildings_per_village):
+                                building_name = name_gen.generate_building_name()
+                                building_desc = desc_gen.generate_building_description()
+                                building = Building(building_name, building_desc)
+                                village.add_location(building)
+
+                        num_towns_per_province = random.randint(2, 4)  # Generate a random number of towns per province
+                        for _ in range(num_towns_per_province):
+                            town_name = name_gen.generate_town_name()
+                            town_desc = desc_gen.generate_town_description()
+                            town = Town(town_name, town_desc)
+                            province.add_location(town)
+
+                            num_buildings_per_town = random.randint(8, 14)  # Generate a random number of buildings per town
+                            for _ in range(num_buildings_per_town):
+                                building_name = name_gen.generate_building_name()
+                                building_desc = desc_gen.generate_building_description()
+                                building = Building(building_name, building_desc)
+                                town.add_location(building)
+
+                        num_forests_per_region = random.randint(1, 3)  # Generate a random number of forests per region
+                        for _ in range(num_forests_per_region):
                             forest_name = name_gen.generate_forest_name()
                             forest_desc = desc_gen.generate_forest_description()
                             forest = Forest(forest_name, forest_desc)
-                            state.add_location(forest)
+                            region.add_location(forest)
 
-                        num_fields_per_state = random.randint(1, 3)  # Generate a random number of fields per state
-                        for _ in range(num_fields_per_state):
+                            num_landmarks_per_forest = random.randint(1, 3)  # Generate a random number of landmarks per forest
+                            for _ in range(num_landmarks_per_forest):
+                                landmark_name = name_gen.generate_landmark_name()
+                                landmark_desc = desc_gen.generate_landmark_description()
+                                landmark = Landmark(landmark_name, landmark_desc)
+                                forest.add_location(landmark)
+
+                                num_ruins_per_forest = random.randint(1, 3)  # Generate a random number of ruins per forest
+                                for _ in range(num_ruins_per_forest):
+                                    ruin_name = name_gen.generate_ruin_name()
+                                    ruin_desc = desc_gen.generate_ruin_description()
+                                    ruin = Ruin(ruin_name, ruin_desc)
+                                    forest.add_location(ruin)
+
+                        num_swamps_per_region = random.randint(1, 3)  # Generate a random number of swamps per region
+                        for _ in range(num_swamps_per_region):
+                            swamp_name = name_gen.generate_swamp_name()
+                            swamp_desc = desc_gen.generate_swamp_description()
+                            swamp = Swamp(swamp_name, swamp_desc)
+                            region.add_location(swamp)
+
+                            num_landmarks_per_swamp = random.randint(1, 3)  # Generate a random number of landmarks per swamp
+                            for _ in range(num_landmarks_per_swamp):
+                                landmark_name = name_gen.generate_landmark_name()
+                                landmark_desc = desc_gen.generate_landmark_description()
+                                landmark = Landmark(landmark_name, landmark_desc)
+                                swamp.add_location(landmark)
+
+                                num_ruins_per_swamp = random.randint(1, 3)  # Generate a random number of ruins per swamp
+                                for _ in range(num_ruins_per_swamp):
+                                    ruin_name = name_gen.generate_ruin_name()
+                                    ruin_desc = desc_gen.generate_ruin_description()
+                                    ruin = Ruin(ruin_name, ruin_desc)
+                                    swamp.add_location(ruin)
+
+                        num_fields_per_region = random.randint(1, 3)  # Generate a random number of fields per region
+                        for _ in range(num_fields_per_region):
                             field_name = name_gen.generate_field_name()
                             field_desc = desc_gen.generate_field_description()
                             field = Field(field_name, field_desc)
-                            state.add_location(field)
+                            region.add_location(field)
 
-                        num_ruins_per_state = random.randint(1, 3)  # Generate a random number of ruins per state
-                        for _ in range(num_ruins_per_state):
-                            ruins_name = name_gen.generate_ruins_name()
-                            ruins_desc = desc_gen.generate_ruins_description()
-                            ruins = Ruins(ruins_name, ruins_desc)
-                            state.add_location(ruins)
+                            num_landmarks_per_field = random.randint(1, 3)  # Generate a random number of landmarks per field
+                            for _ in range(num_landmarks_per_field):
+                                landmark_name = name_gen.generate_landmark_name()
+                                landmark_desc = desc_gen.generate_landmark_description()
+                                landmark = Landmark(landmark_name, landmark_desc)
+                                field.add_location(landmark)
 
-                        num_mountains_per_state = random.randint(1, 3)  # Generate a random number of mountains per state
-                        for _ in range(num_mountains_per_state):
-                            mountain_name = name_gen.generate_mountain_name()
-                            mountain_desc = desc_gen.generate_mountain_description()
-                            mountain = Mountain(mountain_name, mountain_desc)
-                            state.add_location(mountain)
+                                num_ruins_per_field = random.randint(1, 3)  # Generate a random number of ruins per field
+                                for _ in range(num_ruins_per_field):
+                                    ruin_name = name_gen.generate_ruin_name()
+                                    ruin_desc = desc_gen.generate_ruin_description()
+                                    ruin = Ruin(ruin_name, ruin_desc)
+                                    field.add_location(ruin)
 
-                        num_deserts_per_state = random.randint(1, 3)  # Generate a random number of deserts per state
-                        for _ in range(num_deserts_per_state):
+                        num_deserts_per_region = random.randint(1, 3)  # Generate a random number of deserts per region
+                        for _ in range(num_deserts_per_region):
                             desert_name = name_gen.generate_desert_name()
                             desert_desc = desc_gen.generate_desert_description()
                             desert = Desert(desert_name, desert_desc)
-                            state.add_location(desert)
+                            region.add_location(desert)
 
-                        num_lakes_per_state = random.randint(1, 3)  # Generate a random number of lakes per state
-                        for _ in range(num_lakes_per_state):
+                            num_landmarks_per_desert = random.randint(1, 3)  # Generate a random number of landmarks per desert
+                            for _ in range(num_landmarks_per_desert):
+                                landmark_name = name_gen.generate_landmark_name()
+                                landmark_desc = desc_gen.generate_landmark_description()
+                                landmark = Landmark(landmark_name, landmark_desc)
+                                desert.add_location(landmark)
+
+                                num_ruins_per_desert = random.randint(1, 3)  # Generate a random number of ruins per desert
+                                for _ in range(num_ruins_per_desert):
+                                    ruin_name = name_gen.generate_ruin_name()
+                                    ruin_desc = desc_gen.generate_ruin_description()
+                                    ruin = Ruin(ruin_name, ruin_desc)
+                                    desert.add_location(ruin)
+
+                        num_lakes_per_region = random.randint(1, 3)  # Generate a random number of lakes per region
+                        for _ in range(num_lakes_per_region):
                             lake_name = name_gen.generate_lake_name()
                             lake_desc = desc_gen.generate_lake_description()
                             lake = Lake(lake_name, lake_desc)
-                            state.add_location(lake)
+                            region.add_location(lake)
 
-                        num_buildings_per_state = random.randint(1, 3)  # Generate a random number of buildings per state
-                        for _ in range(num_buildings_per_state):
-                            building_name = name_gen.generate_building_name()
-                            building_desc = desc_gen.generate_building_description()
-                            building = Building(building_name, building_desc)
-                            state.add_location(building)
+                            num_landmarks_per_lake = random.randint(1, 3)  # Generate a random number of landmarks per lake
+                            for _ in range(num_landmarks_per_lake):
+                                landmark_name = name_gen.generate_landmark_name()
+                                landmark_desc = desc_gen.generate_landmark_description()
+                                landmark = Landmark(landmark_name, landmark_desc)
+                                lake.add_location(landmark)
 
-                            num_castles_per_building = random.randint(1, 2)  # Generate a random number of castles per building
-                            for _ in range(num_castles_per_building):
-                                castle_name = name_gen.generate_castle_name()
-                                castle_desc = desc_gen.generate_castle_description()
-                                castle = Castle(castle_name, castle_desc)
-                                building.add_location(castle)
+                        num_mountains_per_continent = random.randint(1, 3)  # Generate a random number of mountains per continent
+                        for _ in range(num_mountains_per_continent):
+                            mountain_name = name_gen.generate_mountain_name()
+                            mountain_desc = desc_gen.generate_mountain_description()
+                            mountain = Mountain(mountain_name, mountain_desc)
+                            continent.add_location(mountain)
 
-                            num_dungeons_per_building = random.randint(1, 2)  # Generate a random number of dungeons per building
-                            for _ in range(num_dungeons_per_building):
-                                dungeon_name = name_gen.generate_dungeon_name()
-                                dungeon_desc = desc_gen.generate_dungeon_description()
-                                dungeon = Dungeon(dungeon_name, dungeon_desc)
-                                building.add_location(dungeon)
+                            num_landmarks_per_mountain = random.randint(1, 3)  # Generate a random number of landmarks per mountain
+                            for _ in range(num_landmarks_per_mountain):
+                                landmark_name = name_gen.generate_landmark_name()
+                                landmark_desc = desc_gen.generate_landmark_description()
+                                landmark = Landmark(landmark_name, landmark_desc)
+                                mountain.add_location(landmark)
 
-                    num_rooms_per_dungeon = random.randint(3, 6)  # Generate a random number of rooms per dungeon
-                    for _ in range(num_rooms_per_dungeon):
-                        room_name = name_gen.generate_room_name()
-                        room_desc = desc_gen.generate_room_description()
-                        room = Room(room_name, room_desc)
-                        dungeon.add_location(room)
+                                num_ruins_per_mountain = random.randint(1, 3)  # Generate a random number of ruins per mountain
+                                for _ in range(num_ruins_per_mountain):
+                                    ruin_name = name_gen.generate_ruin_name()
+                                    ruin_desc = desc_gen.generate_ruin_description()
+                                    ruin = Ruin(ruin_name, ruin_desc)
+                                    mountain.add_location(ruin)
+
+        num_oceans = random.randint(4, 7)  # Generate a random number of oceans (4 to 7)
+        for _ in range(num_oceans):
+            ocean_name = name_gen.generate_ocean_name()
+            ocean_desc = desc_gen.generate_ocean_description()
+            ocean = Ocean(ocean_name, ocean_desc)
+            planet.add_location(ocean)
+
+        num_islands = random.randint(2, 8)  # Generate a random number of islands (2 to 8)
+        for _ in range(num_islands):
+            island_name = name_gen.generate_island_name()
+            island_desc = desc_gen.generate_island_description()
+            island = Island(island_name, island_desc)
+            planet.add_location(island)
 
         self.locations += generate_locations()
         map = Map()
@@ -158,9 +242,8 @@ class World:
     def save(self):
         os.makedirs(self.name.lower(), exist_ok=True)
         with open(os.path.join(self.name.lower(), 'location_definitions.py'), 'w') as f:
-            f.write("from location_classes import Universe, Planet, Continent, Country, Region, State, Province, "
-                    "City, Village, Town, Landmark, Forest, Field, Ruins, Mountain, Desert, Lake, River, Building, "
-                    "Castle, Dungeon, Room\n\n")
+            f.write("from location_classes import Universe, Planet, Continent, Country, Region, Province, City, Village, Town, "
+                    "Landmark, Forest, Field, Ruin, Mountain, Desert, Lake, River, Building, Castle, Dungeon, Room, Ocean, Island\n\n")
             for location in self.locations:
                 f.write(f"{location.name.lower().replace(' ', '_')} = {location.__class__.__name__}("
                         f'"{location.name}", "{location.description}")\n')
