@@ -1,4 +1,3 @@
-#location_classes.py
 from ..game import Location
 
 class Container(Location):
