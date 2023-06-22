@@ -1,4 +1,3 @@
-#world_builder.py
 import os
 import random
 from map_generator import Map, generate_locations
