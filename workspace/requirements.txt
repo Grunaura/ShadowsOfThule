@@ -1,0 +1,4 @@
+faker
+spacy
+pygame
+pyqt5

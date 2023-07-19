@@ -1,6 +1,7 @@
+#save_load.py
 import os
 import json
-from .game import Player, Item
+from game import Player, Item
 
 class SaveLoad:
     @staticmethod
